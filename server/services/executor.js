@@ -67,7 +67,7 @@ async function executeCode(job, io) {
     }, EXECUTION_LIMITS.TIMEOUT_MS);
 
     // 10. Block until the container process exits
-    const [exitData] = await container.wait();
+    const exitData = await container.wait();
     clearTimeout(timeoutId);
 
     // 11. Compute final metrics
