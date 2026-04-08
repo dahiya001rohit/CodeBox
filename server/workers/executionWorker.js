@@ -1,5 +1,5 @@
 const { Worker } = require('bullmq');
-const redis = require('../services/redis');
+const connection = require('../services/redisConnection');
 const { executeCode } = require('../services/executor');
 const { QUEUE_NAME } = require('../services/queue');
 const { QUEUE_LIMITS } = require('../utils/constants');
@@ -12,7 +12,7 @@ function createWorker(io) {
       await executeCode(job.data, io);
     },
     {
-      connection: redis,
+      connection,
       concurrency: QUEUE_LIMITS.MAX_CONCURRENT,
     }
   );

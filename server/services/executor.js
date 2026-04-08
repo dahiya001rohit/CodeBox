@@ -33,7 +33,6 @@ async function executeCode(job, io) {
     const stderrStream = new PassThrough();
 
     const attachStream = await container.attach({ stream: true, stdout: true, stderr: true });
-    attachStream.setEncoding('utf8');
     docker.modem.demuxStream(attachStream, stdoutStream, stderrStream);
 
     // 6. Forward stdout chunks to the client in real time
@@ -42,8 +41,9 @@ async function executeCode(job, io) {
         outputTruncated = true;
         return;
       }
-      outputSize += chunk.length;
-      io.to(sessionId).emit('output', { executionId, stream: 'stdout', data: chunk.toString() });
+      const text = chunk.toString('utf8');
+      outputSize += Buffer.byteLength(text, 'utf8');
+      io.to(sessionId).emit('output', { executionId, stream: 'stdout', data: text });
     });
 
     // 7. Forward stderr chunks to the client in real time
@@ -52,8 +52,9 @@ async function executeCode(job, io) {
         outputTruncated = true;
         return;
       }
-      outputSize += chunk.length;
-      io.to(sessionId).emit('output', { executionId, stream: 'stderr', data: chunk.toString() });
+      const text = chunk.toString('utf8');
+      outputSize += Buffer.byteLength(text, 'utf8');
+      io.to(sessionId).emit('output', { executionId, stream: 'stderr', data: text });
     });
 
     // 8. Start the container

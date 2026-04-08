@@ -3,10 +3,7 @@ require('dotenv').config();
 const Redis = require('ioredis');
 
 // maxRetriesPerRequest: null is required by BullMQ for blocking commands (BLPOP etc.)
-const redis = new Redis({
-  host: process.env.REDIS_HOST,
-  port: parseInt(process.env.REDIS_PORT, 10),
-  password: process.env.REDIS_PASSWORD || undefined,
+const redis = new Redis(process.env.REDIS_URL, {
   maxRetriesPerRequest: null,
 });
 

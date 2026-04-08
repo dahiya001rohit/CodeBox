@@ -1,10 +1,10 @@
 const { Queue } = require('bullmq');
-const redis = require('./redis');
+const connection = require('./redisConnection');
 
 const QUEUE_NAME = 'code-execution';
 
 const queue = new Queue(QUEUE_NAME, {
-  connection: redis,
+  connection,
 });
 
 module.exports = queue;
