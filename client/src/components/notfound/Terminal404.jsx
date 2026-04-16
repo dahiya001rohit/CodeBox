@@ -1,40 +1,54 @@
 export default function Terminal404() {
   return (
-    <div className="w-full max-w-[560px] bg-[#0e0e0e] overflow-hidden border border-[#584237]/15">
-      {/* Terminal header */}
-      <div className="bg-[#1c1b1b] px-4 py-2 flex items-center justify-between">
-        <div className="flex gap-2">
-          <div className="w-3 h-3 rounded-full bg-[#FF4444]"></div>
-          <div className="w-3 h-3 rounded-full bg-[#FFB68E]"></div>
-          <div className="w-3 h-3 rounded-full bg-[#22C55E]"></div>
-        </div>
-        <div className="text-[11px] text-[#666666] font-['JetBrains_Mono']">
-          codebox — bash — 80x24
-        </div>
-        <div className="w-12"></div>
+    <div style={{
+      width: '100%',
+      maxWidth: '560px',
+      backgroundColor: '#111111',
+      border: '1px solid #1E1E1E',
+      borderRadius: '4px',
+      overflow: 'hidden',
+      marginBottom: '32px',
+    }}>
+      {/* Title bar */}
+      <div style={{
+        height: '36px',
+        backgroundColor: '#161616',
+        borderBottom: '1px solid #1E1E1E',
+        display: 'flex',
+        alignItems: 'center',
+        padding: '0 16px',
+        gap: '8px',
+      }}>
+        <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#FF5555' }} />
+        <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#F5761A', opacity: 0.5 }} />
+        <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#4ADE80', opacity: 0.3 }} />
+        <span style={{
+          fontFamily: "'JetBrains Mono', monospace",
+          fontSize: '11px',
+          color: '#444444',
+          marginLeft: '8px',
+        }}>
+          bash — codebox
+        </span>
       </div>
 
-      {/* Terminal body */}
-      <div className="p-7 font-['JetBrains_Mono'] leading-relaxed">
-        <div className="mb-2 text-[#666666] flex gap-2">
-          <span className="text-[#f5761a]">$</span>
-          <span>node server.js --find-route /this-page</span>
+      {/* Terminal output */}
+      <div style={{
+        padding: '24px',
+        fontFamily: "'JetBrains Mono', monospace",
+        fontSize: '13px',
+        lineHeight: 1.8,
+      }}>
+        <div style={{ color: '#3A3A3A' }}>$ cd /page/not/found</div>
+        <div style={{ color: '#FF5555', marginTop: '4px' }}>
+          bash: /page/not/found: No such file or directory
         </div>
-        <div className="mb-4 text-[#ffb4ab]">Error: Route not found</div>
-        <div className="mb-6">
-          <div className="text-[28px] font-bold text-[#e5e2e1] leading-tight">
-            Process exited
-          </div>
-          <div className="text-[28px] font-bold text-[#e5e2e1] leading-tight">
-            with code 404.
-          </div>
-        </div>
-        <div className="mb-8 text-[#666666]">
-          // The page you&apos;re looking for doesn&apos;t exist.
-        </div>
-        <div className="flex items-center gap-1">
-          <span className="text-[#f5761a]">$</span>
-          <div className="w-2.5 h-5 bg-[#f5761a] cursor-blink"></div>
+        <div style={{ color: '#3A3A3A', marginTop: '8px' }}>$ echo $?</div>
+        <div style={{ color: '#4ADE80', marginTop: '4px' }}>404</div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '2px', marginTop: '8px' }}>
+          <span style={{ color: '#F5761A' }}>$</span>
+          <span style={{ color: '#F2F0EC', marginLeft: '6px' }}></span>
+          <span className="cursor-blink" />
         </div>
       </div>
     </div>

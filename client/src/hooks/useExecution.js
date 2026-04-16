@@ -68,7 +68,16 @@ export function useExecution() {
   }, [socket]);
 
   const runCode = useCallback((language, code) => {
-    if (!socket || !isConnected) return;
+    if (!isConnected) {
+      setStatus('error');
+      setOutput([
+        { stream: 'system', data: '// Backend unavailable — this demo requires a Docker-enabled server.' },
+        { stream: 'system', data: '// Clone the repo and run locally to execute code.' },
+        { stream: 'system', data: '// See README for setup instructions.' },
+      ]);
+      return;
+    }
+    if (!socket) return;
     executionIdRef.current = null;
     setOutput([]);
     setDuration(null);

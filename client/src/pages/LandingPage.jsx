@@ -1,3 +1,4 @@
+import AnnouncementBanner from '../components/common/AnnouncementBanner';
 import Navbar from '../components/landing/Navbar';
 import Hero from '../components/landing/Hero';
 import HowItWorks from '../components/landing/HowItWorks';
@@ -14,8 +15,9 @@ export default function LandingPage() {
       display: 'flex',
       flexDirection: 'column',
     }}>
+      <AnnouncementBanner />
       <Navbar />
-      <main style={{ paddingTop: '56px', flex: 1 }}>
+      <main style={{ paddingTop: '96px', flex: 1 }}>
         <Hero />
         <HowItWorks />
         <CoreInfrastructure />

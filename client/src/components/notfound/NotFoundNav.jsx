@@ -1,14 +1,46 @@
+import { useNavigate } from 'react-router-dom';
+
 export default function NotFoundNav() {
+  const navigate = useNavigate();
+
   return (
-    <nav className="fixed top-0 w-full flex justify-between items-center px-6 h-16 z-50 bg-[#131313]/80 backdrop-blur-md font-['JetBrains_Mono'] tracking-tighter">
-      <div className="flex items-center gap-2">
-        <span className="text-xl font-bold tracking-tighter text-[#f5761a]">
-          &gt;_ CodeBox
+    <header style={{
+      height: '52px',
+      display: 'flex',
+      alignItems: 'center',
+      padding: '0 24px',
+      borderBottom: '1px solid #1E1E1E',
+      backgroundColor: '#131313',
+    }}>
+      <button
+        onClick={() => navigate('/')}
+        style={{
+          background: 'none',
+          border: 'none',
+          cursor: 'pointer',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '6px',
+        }}
+      >
+        <span style={{
+          fontFamily: "'JetBrains Mono', monospace",
+          fontSize: '14px',
+          fontWeight: 800,
+          color: '#F5761A',
+        }}>
+          &gt;_
         </span>
-      </div>
-      <button className="bg-transparent border border-[#1E1E1E] text-[#666666] px-4 py-2 font-bold hover:bg-white/5 duration-100 transition-all">
-        Back to Home
+        <span style={{
+          fontFamily: "'JetBrains Mono', monospace",
+          fontSize: '13px',
+          fontWeight: 700,
+          color: '#F2F0EC',
+          letterSpacing: '0.06em',
+        }}>
+          CODEBOX
+        </span>
       </button>
-    </nav>
+    </header>
   );
 }

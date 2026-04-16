@@ -1,3 +1,6 @@
+// Backend requires Docker daemon — not available on static hosting
+export const SOCKET_URL = '';
+
 export const LANGUAGES = {
   node: {
     id: 'node',
